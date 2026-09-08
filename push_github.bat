@@ -1,30 +1,22 @@
 @echo off
-echo =========================================================================
-echo IT214 - SESSION 04 - BAI 1: PHAN TICH CHIA SERVICE VA THIET KE DB MEDICARE
-echo THUC HIEN DAY DU: GIT INIT - GIT ADD - GIT COMMIT - GIT PUSH
-echo =========================================================================
-echo.
+chcp 65001 > nul
+echo ========================================================
+echo   PUSH GITHUB REPOSITORY - BAI TAP 1 (SESSION 04 / SS08)
+echo   Repo: PTIT-HN-CNTT3-HOANGTHIENSON-IT214-SS08-01
+echo ========================================================
 
-set /p REPO_URL="Nhap link GitHub repository cua ban (vi du https://github.com/user/repo.git): "
-if "%REPO_URL%"=="" (
-    echo [LOI] Link GitHub khong duoc de trong!
-    pause
-    exit /b
+cd /d "%~dp0"
+
+if not exist ".git" (
+    git init
+    git branch -M main
 )
 
-echo Dang khoi tao Git va Commit...
-git init
-git branch -M main
+git remote remove origin 2>nul
+git remote add origin https://github.com/Boizi-06/PTIT-HN-CNTT3-HOANGTHIENSON-IT214-SS08-01.git
+
 git add .
-git commit -m "feat: IT214 Session 04 - Bai 1: Phan tich chia module va thiet ke Database-per-Service cho he thong Medicare"
-git remote remove origin >nul 2>&1
-git remote add origin %REPO_URL%
+git commit -m "feat(session04-bai1): hoan thanh phan tich chia service va thiet ke db medicare"
+git push -u origin main
 
-echo Dang push code len GitHub: %REPO_URL% ...
-git push -u origin main --force
-
-echo.
-echo =========================================================================
-echo DA HOAN TAT PUSH CODE LEN GITHUB!
-echo =========================================================================
 pause
